@@ -5,11 +5,10 @@ import 'package:meta/meta.dart';
 part 'counter_state.dart';
 
 class CounterCubit extends Cubit<CounterState> {
-  CounterCubit(int initialValue, this.increaseValue, this.decreaseValue)
-      : super(CounterInitial(initialValue));
-  int increaseValue;
+  CounterCubit(int initialValue, int goal, int increaseValue, int decreaseValue)
+      : super(CounterNew(initialValue));
   int decreaseValue;
 
-  void increment() => emit(CounterUpdated(state.counter + increaseValue));
-  void decrement() => emit(CounterUpdated(state.counter - decreaseValue));
+  void increment() => emit(CounterNew(state.counter + increaseValue));
+  void decrement() => emit(CounterNew(state.counter - decreaseValue));
 }

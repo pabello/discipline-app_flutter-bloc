@@ -6,16 +6,21 @@ abstract class CounterState {
 
   // Required for the subclasses to be recognized of holding such value
   get counter => null;
+  get goal => null;
+  get increaseValue => null;
+  get decreaseValue => null;
+
+  bool goalReached();
 }
 
-class CounterInitial extends CounterState {
+class CounterNew extends CounterState {
   @override
-  final int counter;
-  const CounterInitial(this.counter);
-}
+  final int counter, goal, increaseValue, decreaseValue;
+  const CounterNew(
+      this.counter, this.goal, this.increaseValue, this.decreaseValue);
 
-class CounterUpdated extends CounterState {
   @override
-  final int counter;
-  const CounterUpdated(this.counter);
+  bool goalReached() {
+    return counter >= goal;
+  }
 }
